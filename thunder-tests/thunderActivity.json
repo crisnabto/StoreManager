@@ -64,12 +64,12 @@
     "method": "POST",
     "sortNum": 0,
     "created": "2022-10-13T18:34:45.600Z",
-    "modified": "2022-10-13T19:48:11.951Z",
+    "modified": "2022-10-13T20:20:19.298Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"name\": \"ProdutoX\"\n}",
+      "raw": "{\n  \"age\": \"Prodd\"\n}",
       "form": []
     },
     "tests": []
