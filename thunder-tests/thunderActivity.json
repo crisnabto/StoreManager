@@ -36,9 +36,14 @@
     "method": "GET",
     "sortNum": 0,
     "created": "2022-10-11T20:04:13.135Z",
-    "modified": "2022-10-13T19:48:19.156Z",
+    "modified": "2022-10-13T21:51:54.570Z",
     "headers": [],
     "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"name\": \"Product X\"\n}",
+      "form": []
+    },
     "tests": []
   },
   {
@@ -64,12 +69,69 @@
     "method": "POST",
     "sortNum": 0,
     "created": "2022-10-13T18:34:45.600Z",
-    "modified": "2022-10-13T20:20:19.298Z",
+    "modified": "2022-10-13T21:47:59.682Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"age\": \"Prodd\"\n}",
+      "raw": "{\n  \"name\": \"Product X\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "6a669ab9-8fdf-4bb8-9062-fb6d448e3a4a",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://localhost:3000/sales",
+    "url": "http://localhost:3000/sales",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2022-10-13T21:39:07.355Z",
+    "modified": "2022-10-13T21:52:04.661Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"name\": \"Product X\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "a3cbe281-98de-4c32-9c4c-6f06f63e966b",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://localhost:3000/sales/999",
+    "url": "http://localhost:3000/sales/999",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2022-10-13T22:02:40.390Z",
+    "modified": "2022-10-13T22:04:58.892Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"name\": \"Product X\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "bca2a797-b02e-4571-b56b-5259386a0d67",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://localhost:3000/sales/1",
+    "url": "http://localhost:3000/sales/1",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2022-10-13T22:05:33.213Z",
+    "modified": "2022-10-13T22:05:33.229Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"name\": \"Product X\"\n}",
       "form": []
     },
     "tests": []
