@@ -19,7 +19,18 @@ const findProductById = async (productId) => {
   return result;
 };
 
+// Insere novo valor na tabela Products coluna Name e retorna id
+const setNewProduct = async (product) => {
+  const [{ insertId }] = await connection.execute(
+    'INSERT INTO StoreManager.products (name) VALUE (?)',
+    [product],
+  );
+  // console.log(insertId);
+  return insertId;
+};
+
 module.exports = {
   findAllProducts,
   findProductById,
+  setNewProduct,
 };

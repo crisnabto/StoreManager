@@ -12,7 +12,15 @@ const getProductById = async (req, res) => {
   return res.status(type).json(message);
 };
 
+// Verifica corpo da requisicao com o nome do novo produto a cadastrar
+const setNewProduct = async (req, res) => {
+  const { name } = req.body;
+  const { message } = await productsService.setNewProduct(name);
+  return res.status(201).json(message);
+};
+
 module.exports = {
   listProducts,
   getProductById,
+  setNewProduct,
 };

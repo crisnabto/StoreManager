@@ -13,7 +13,15 @@ const findProductById = async (productId) => {
   return { type: 404, error: 'Product not found' };
 };
 
+// Verifica o id do novo produto cadastrado e retorna codigo e mensagem
+const setNewProduct = async (product) => {
+  const idProduct = await productsModel.setNewProduct(product);
+  const result = await productsModel.findProductById(idProduct);
+  return { type: null, message: result };
+};
+
 module.exports = {
   findAllProducts,
   findProductById,
+  setNewProduct,
 };
