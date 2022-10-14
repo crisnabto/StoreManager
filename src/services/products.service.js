@@ -20,8 +20,15 @@ const setNewProduct = async (product) => {
   return { type: null, message: result };
 };
 
+const editProduct = async (newName, idProduct) => {
+  await productsModel.editProduct(newName, idProduct);
+  const result = await productsModel.findProductById(idProduct);
+  return { type: 200, message: result };
+};
+
 module.exports = {
   findAllProducts,
   findProductById,
   setNewProduct,
+  editProduct,
 };

@@ -1,4 +1,5 @@
 const productsService = require('../services/products.service');
+// const productsModel = require('../models/products.model');
 
 const listProducts = async (_req, res) => {
   const { type, message } = await productsService.findAllProducts();
@@ -19,8 +20,17 @@ const setNewProduct = async (req, res) => {
   return res.status(201).json(message);
 };
 
+const editProduct = async (req, res) => {
+  const { id } = req.params;
+  const { name } = req.body;
+  const { type, message } = await productsService.editProduct(name, id);
+  if (!message) return res.status(404).json({ message: 'Product not found' });
+  return res.status(type).json(message);
+};
+
 module.exports = {
   listProducts,
   getProductById,
   setNewProduct,
+  editProduct,
 };

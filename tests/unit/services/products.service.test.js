@@ -2,14 +2,13 @@ const { expect } = require('chai');
 const sinon = require('sinon');
 const productsService = require('../../../src/services/products.service');
 const productsModel = require('../../../src/models/products.model');
-const { allProducts, productById } = require('../models/mocks/productsMock');
+const { allProducts, productById, newProduct, newName, idProduct } = require('../models/mocks/productsMock');
 
 describe('Testes de unidade do service de produtos', function () {
   afterEach(sinon.restore);
 
   it('Buscando por todos os produtos cadastrados', async function () {
     sinon.stub(productsModel, 'findAllProducts').resolves(allProducts);
-    console.log(allProducts);
     const result = await productsService.findAllProducts();
     expect(result.message).to.be.deep.equal(allProducts);
   });
@@ -18,5 +17,24 @@ describe('Testes de unidade do service de produtos', function () {
     sinon.stub(productsModel, 'findProductById').resolves(allProducts[0]);
     const result = await productsService.findProductById(1);
     expect(result.message).to.be.deep.equal(allProducts[0]);
+  });
+
+  it('Testa se retorna erro caso nao encontre id do produto', async function () {
+    sinon.stub(productsModel, 'findProductById').resolves(undefined);
+    const result = await productsService.findProductById(9);
+    expect(result.type).to.equal(404)
+  });
+
+  it('Cadastrando um novo produto', async function () {
+    sinon.stub(productsModel, 'setNewProduct').resolves({ insertId: newProduct.id });
+    sinon.stub(productsModel, 'findProductById').resolves(newProduct);
+    const result = await productsService.setNewProduct(newProduct.name);
+    expect(result.message).to.be.deep.equal(newProduct);
+  });
+
+  it('Editando um produto', async function () {
+    sinon.stub(productsModel, 'editProduct').resolves();
+    const result = await productsService.editProduct(newName, idProduct);
+    expect(result.message).to.be.deep.equal(newProduct);
   });
 })

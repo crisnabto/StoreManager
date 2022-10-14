@@ -7,6 +7,7 @@ const findAllProducts = async () => {
   const [result] = await connection.execute(
     'SELECT * FROM StoreManager.products',
   );
+  // console.log(result);
   return result;
 };
 
@@ -25,12 +26,20 @@ const setNewProduct = async (product) => {
     'INSERT INTO StoreManager.products (name) VALUE (?)',
     [product],
   );
-  // console.log(insertId);
+  console.log(insertId);
   return insertId;
+};
+
+const editProduct = async (newName, idProduct) => {
+  await connection.execute(
+    'UPDATE StoreManager.products SET name = ? WHERE id = ?',
+    [newName, idProduct],
+  );
 };
 
 module.exports = {
   findAllProducts,
   findProductById,
   setNewProduct,
+  editProduct,
 };
