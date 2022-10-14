@@ -34,7 +34,9 @@ describe('Testes de unidade do service de produtos', function () {
 
   it('Editando um produto', async function () {
     sinon.stub(productsModel, 'editProduct').resolves();
+    sinon.stub(productsModel, 'findProductById').resolves(newProduct)
     const result = await productsService.editProduct(newName, idProduct);
+    console.log(result);
     expect(result.message).to.be.deep.equal(newProduct);
   });
 })
