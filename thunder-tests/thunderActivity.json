@@ -36,9 +36,14 @@
     "method": "GET",
     "sortNum": 0,
     "created": "2022-10-11T20:04:13.135Z",
-    "modified": "2022-10-13T23:46:54.262Z",
+    "modified": "2022-10-14T18:55:22.411Z",
     "headers": [],
     "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"name\": \"Product X\"\n}",
+      "form": []
+    },
     "tests": []
   },
   {
@@ -140,7 +145,83 @@
     "method": "POST",
     "sortNum": 0,
     "created": "2022-10-14T01:07:14.650Z",
-    "modified": "2022-10-14T01:07:15.109Z",
+    "modified": "2022-10-14T18:55:19.618Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"name\": \"Product X\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "5fb241f3-aa79-4635-a392-0c2e74470323",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://localhost:3000/products/4",
+    "url": "http://localhost:3000/products/4",
+    "method": "DELETE",
+    "sortNum": 0,
+    "created": "2022-10-14T18:51:52.697Z",
+    "modified": "2022-10-14T18:53:50.126Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"name\": \"Product X\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "6ef84e7b-7b58-420b-b870-ed60854d9d04",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://localhost:3000/products/5",
+    "url": "http://localhost:3000/products/5",
+    "method": "DELETE",
+    "sortNum": 0,
+    "created": "2022-10-14T18:54:23.391Z",
+    "modified": "2022-10-14T18:54:28.749Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"name\": \"Product X\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "608e6b4b-5983-4097-a8e3-10a3ad0ee462",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://localhost:3000/products/6",
+    "url": "http://localhost:3000/products/6",
+    "method": "DELETE",
+    "sortNum": 0,
+    "created": "2022-10-14T18:55:01.528Z",
+    "modified": "2022-10-14T18:55:05.365Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"name\": \"Product X\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "ec3fef86-811f-4e44-9061-cd9678156413",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://localhost:3000/products/7",
+    "url": "http://localhost:3000/products/7",
+    "method": "DELETE",
+    "sortNum": 0,
+    "created": "2022-10-14T18:55:28.279Z",
+    "modified": "2022-10-14T18:55:28.301Z",
     "headers": [],
     "params": [],
     "body": {

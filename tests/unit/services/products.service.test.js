@@ -39,4 +39,20 @@ describe('Testes de unidade do service de produtos', function () {
     console.log(result);
     expect(result.message).to.be.deep.equal(newProduct);
   });
+
+  it('Deletando um produto', async function () {
+    sinon.stub(productsModel, 'deleteProduct').resolves();
+    sinon.stub(productsModel, 'findProductById').resolves(newProduct)
+    const result = await productsService.deleteProduct(idProduct);
+    console.log(result);
+    expect(result.type).to.equal(204);
+  });
+
+  it('Erro ao deletar um produto inexistente', async function () {
+    sinon.stub(productsModel, 'deleteProduct').resolves();
+    sinon.stub(productsModel, 'findProductById').resolves(undefined)
+    const result = await productsService.deleteProduct(idProduct);
+    console.log(result);
+    expect(result.type).to.equal(404);
+  });
 })

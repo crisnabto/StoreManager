@@ -28,9 +28,18 @@ const editProduct = async (req, res) => {
   return res.status(type).json(message);
 };
 
+// Deleta o produto pelo id passado e retorna erro se nao for encontrado
+const deleteProduct = async (req, res) => {
+  const { id } = req.params;
+  const { type, error } = await productsService.deleteProduct(id);
+  if (error) return res.status(type).json({ message: error });
+  return res.status(type).json();
+};
+
 module.exports = {
   listProducts,
   getProductById,
   setNewProduct,
   editProduct,
+  deleteProduct,
 };

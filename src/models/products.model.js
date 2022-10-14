@@ -30,11 +30,22 @@ const setNewProduct = async (product) => {
   return insertId;
 };
 
+// Apenas faz a atualizacao da info do produto, retorna id para teste
 const editProduct = async (newName, idProduct) => {
   await connection.execute(
     'UPDATE StoreManager.products SET name = ? WHERE id = ?',
     [newName, idProduct],
   );
+  return idProduct;
+};
+
+// Apenas faz a remocao do produto, retorna id para teste
+const deleteProduct = async (idProduct) => {
+  await connection.execute(
+    'DELETE FROM StoreManager.products WHERE id = ?',
+    [idProduct],
+  );
+  return idProduct;
 };
 
 module.exports = {
@@ -42,4 +53,5 @@ module.exports = {
   findProductById,
   setNewProduct,
   editProduct,
+  deleteProduct,
 };

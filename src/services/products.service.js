@@ -20,10 +20,19 @@ const setNewProduct = async (product) => {
   return { type: null, message: result };
 };
 
+// Verifica o id do produto editado e retorna produto editado
 const editProduct = async (newName, idProduct) => {
   await productsModel.editProduct(newName, idProduct);
   const result = await productsModel.findProductById(idProduct);
   return { type: 200, message: result };
+};
+
+// Verifica se o id do produto existe e deleta caso exista
+const deleteProduct = async (idProduct) => {
+  const findDeletedProduct = await productsModel.findProductById(idProduct);
+  if (!findDeletedProduct) return { type: 404, error: 'Product not found' };
+  await productsModel.deleteProduct(idProduct);
+  return { type: 204 };
 };
 
 module.exports = {
@@ -31,4 +40,5 @@ module.exports = {
   findProductById,
   setNewProduct,
   editProduct,
+  deleteProduct,
 };
