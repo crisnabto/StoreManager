@@ -1,51 +1,46 @@
-// const camelize = require('camelize');
-// const snakeize = require('snakeize');
-// const connection = require('./connection');
+const connection = require('./connection');
 
-// newSale = { productId e quantity }
+const listAllSales = async () => {
+  const [result] = await connection.execute(
+    `SELECT id AS 'saleId', date, product_id AS 'productId', quantity
+    FROM StoreManager.sales
+    INNER JOIN StoreManager.sales_products
+    ON StoreManager.sales.id = StoreManager.sales_products.sale_id;`,
+  );
+  return result;
+};
 
-// const listAllSales = async () => {
-//   const [result] = await connection.execute(
-//     'SELECT * FROM StoreManager.sales',
-//   );
-//   return result;
-// };
+const saleById = async (saleId) => {
+  const [result] = await connection.execute(
+    `SELECT date, product_id AS 'productId', quantity
+    FROM StoreManager.sales
+    INNER JOIN StoreManager.sales_products
+    ON StoreManager.sales.id = StoreManager.sales_products.sale_id
+    WHERE StoreManager.sales.id = ?;`,
+    [saleId],
+  );
+  return result;
+};
 
-// const saleById = async (saleId) => {
-//   const [[result]] = await connection.execute(
-//     'SELECT * FROM StoreManager.sales WHERE id = ?',
-//     [saleId],
-//   );
-//   return result;
-// };
+const newSale = async (products) => {
+  const [result] = await connection.execute(
+    'INSERT INTO StoreManager.sales (date) VALUE (NOW())',
+  );
 
-// const insertSaleDate = async (date) => {
-//   const [result] = await connection.execute(
-//     'INSERT INTO StoreManager.sales (date) VALUE ?',
-//     [date],
-//   );
-//   return result;
-// };
+  const saleId = result.insertId;
+  const values = products.map(({ productId, quantity }) => [saleId, productId, quantity]);
 
-// const insertNewSale = async (newSale) => {
-//   const columns = Object.keys(snakeize(newSale))
-//     .map((key) => `${key}`)
-//     .join(', ');
-  
-//   const placeholders = Object.keys(newSale)
-//     .map((_key) => '?')
-//     .join(', ');
-  
-//   const [{ insertId }] = await connection.execute(
-//     `INSERT INTO StoreManager.sales (${columns}) VALUE (${placeholders})`,
-//     [...Object.values(newSale)],
-//   );
-//   return insertId;
-// };
+  await connection.execute(
+    `INSERT INTO StoreManager.sales_products (sale_id, product_id, quantity) VALUES ${ 
+    values.map(() => '(?, ?, ?)').join(', ')}`,
+    values.flat(),
+  );
 
-// module.exports = {
-//   listAllSales,
-//   saleById,
-//   insertNewSale,
-//   insertSaleDate,
-// };
+  return saleId;
+};
+
+module.exports = {
+  listAllSales,
+  saleById,
+  newSale,
+};
