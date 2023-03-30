@@ -1,4 +1,5 @@
 const productsService = require('../services/products.service');
+const salesModel = require('../models/sales.model');
 
 const validateProducts = (req, res, next) => {
   let status = 200;
@@ -43,4 +44,10 @@ const prodExist = async (products) => {
   return { status: 200, message: 'All products are valid' };
 };
 
-module.exports = { prodExist, validateProducts, validateQuantity };
+const saleExist = async (saleId) => {
+  const result = await salesModel.saleById(saleId);
+  if (result.length === 0) return { status: 404, message: 'Sale not found' };
+  return { status: 200, message: 'Valid sale' };
+};
+
+module.exports = { prodExist, validateProducts, validateQuantity, saleExist };

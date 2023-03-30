@@ -1,5 +1,5 @@
 const salesModel = require('../models/sales.model');
-const { prodExist } = require('../middlewares/salesValidations');
+const { prodExist, saleExist } = require('../middlewares/salesValidations');
 
 const listAllSales = async () => {
   const sales = await salesModel.listAllSales();
@@ -20,8 +20,18 @@ const newSale = async (newSaleData) => {
   return { id: newSaleCreated, itemsSold: newSaleData };
 };
 
+const editSale = async (saleData, saleId) => {
+  const saleOk = await saleExist(saleId);
+  if (saleOk.status === 404) return { type: 404, message: 'Sale not found' };
+  const dataOk = await prodExist(saleData);
+  if (dataOk.status === 404) return { type: 404, message: 'Product not found' };
+  const editSaleDb = await salesModel.editSale(saleData, saleId);
+  return { saleId: editSaleDb, itemsUpdated: saleData };
+};
+
 module.exports = {
   listAllSales,
   saleById,
   newSale,
+  editSale,
 };
