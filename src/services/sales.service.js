@@ -29,9 +29,17 @@ const editSale = async (saleData, saleId) => {
   return { saleId: editSaleDb, itemsUpdated: saleData };
 };
 
+const deleteSale = async (saleId) => {
+  const saleOk = await saleExist(saleId);
+  if (saleOk.status === 404) return { type: 404, message: 'Sale not found' };
+  await salesModel.deleteSale(saleId);
+  return { status: 204 };
+};
+
 module.exports = {
   listAllSales,
   saleById,
   newSale,
   editSale,
+  deleteSale,
 };
