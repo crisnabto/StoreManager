@@ -48,10 +48,19 @@ const deleteProduct = async (idProduct) => {
   return idProduct;
 };
 
+// Pesquisa por termo
+const searchByTerm = async (term) => {
+  const [[result]] = await connection.execute(
+    `SELECT * FROM StoreManager.products WHERE name LIKE '%${term}%'`,
+  );
+  return result;
+};
+
 module.exports = {
   findAllProducts,
   findProductById,
   setNewProduct,
   editProduct,
   deleteProduct,
+  searchByTerm,
 };

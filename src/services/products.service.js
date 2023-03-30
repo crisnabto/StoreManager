@@ -35,10 +35,19 @@ const deleteProduct = async (idProduct) => {
   return { type: 204 };
 };
 
+// Pesquisa por termo
+const searchByTerm = async (term) => {
+  const findByTerm = await productsModel.searchByTerm(term);
+  if (!findByTerm) return { error: 'Product not found' };
+  if (term.length === 0) return findAllProducts();
+  return { type: 200, message: [findByTerm] };
+};
+
 module.exports = {
   findAllProducts,
   findProductById,
   setNewProduct,
   editProduct,
   deleteProduct,
+  searchByTerm,
 };
